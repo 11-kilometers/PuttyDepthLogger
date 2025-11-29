@@ -4,27 +4,27 @@ It demonstrates a new approach to underwater electronics packaging using a non-N
 This encapsulation method also enables 3D-printed housings to be used as waterproof enclosures, eliminating the need for machined pressure housings or epoxy-filled assemblies.
 The goal of this methodology is to lower the barriers to building underwater instruments, making marine exploration and sensing more accessible to students, researchers, makers, and small organizations.
 
-This project includes:
+**This project includes:**
 
-Custom CircuitPython firmware (firmware.uf2) enabling the Adalogger’s SD card to appear as a USB-readable drive — not supported in the stock CircuitPython build.
+- Custom CircuitPython firmware (firmware.uf2) enabling the Adalogger’s SD card to appear as a USB-readable drive — not supported in the stock CircuitPython build.
 
-A dual-mode boot system controlled by an SPDT magnetic reed switch.
+- A dual-mode boot system controlled by an SPDT magnetic reed switch.
 
-code.py for timestamped pressure/temperature logging at 1 Hz.
+- code.py for timestamped pressure/temperature logging at 1 Hz.
 
-boot.py for safe filesystem handling based on the reed switch position.
+- boot.py for safe filesystem handling based on the reed switch position.
 
-Dual-Mode Magnetic Reed Switch System
+**Dual-Mode Magnetic Reed Switch System**
 
 A single-pole, dual-throw (SPDT) magnetic reed switch provides reliable hardware-level control of the boot mode without opening the enclosure.
 
 Switch wiring:
 
-NC → BAT+
+- NC → BAT+
 
-NO → GND
+- NO → GND
 
-Common wiper → D9
+- Common wiper → D9
 
 Magnet away → wiper on NC → D9 = HIGH
 Magnet present → wiper on NO → D9 = LOW
@@ -41,63 +41,62 @@ Magnet present → wiper on NO → D9 = LOW
                                |
                      NO        o--------→ GND
 
-Mode Behavior
+**Mode Behavior**
 
 HIGH (magnet away → NC → BAT+)
 Normal Logging Mode
 
-SD card writable by CircuitPython
+- SD card writable by CircuitPython
 
-CIRCUITPY locked read-only (protects running code during logging)
+- CIRCUITPY locked read-only (protects running code during logging)
 
 LOW (magnet present → NO → GND)
 Maintenance / USB Mode
 
-CIRCUITPY writable over USB
+- CIRCUITPY writable over USB
 
-SD card read-only and protected from corruption
+- SD card read-only and protected from corruption
 
-Safe for firmware updates or extracting log files
+- Safe for firmware updates or extracting log files
 
-Firmware and Code Included
+**Firmware and Code Included**
 
 firmware.uf2
-Custom CircuitPython build enabling USB access to the Adalogger’s SD card.
+- Custom CircuitPython build enabling USB access to the Adalogger’s SD card.
 
 boot.py
-Mounts/remounts CIRCUITPY and the SD card according to D9’s hardware state.
+- Mounts/remounts CIRCUITPY and the SD card according to D9’s hardware state.
 
 code.py
-Logs:
+- Logs:
 
-epoch timestamp
+  - epoch timestamp
 
-pressure in hPa
+  - pressure in hPa
 
-temperature in °C
-once per second to incrementing CSV files.
+  -temperature in °C once per second to incrementing CSV files.
 
-Hardware Overview
+**Hardware Overview**
 
 Minimum required components:
 
-Adafruit Feather RP2040 Adalogger
+- Adafruit Feather RP2040 Adalogger
 
-LPS28 / LPS28DFW pressure sensor (I²C)
+- LPS28 / LPS28DFW pressure sensor (I²C)
 
-MicroSD card (FAT32)
+- MicroSD card (FAT32)
 
-SPDT magnetic reed switch
+- SPDT magnetic reed switch
 
-3.7 V Li-ion battery
+- 3.7 V Li-ion battery
 
-3D-printed enclosure
+- 3D-printed enclosure
 
-Non-Newtonian reworkable potting putty
+- Non-Newtonian reworkable potting putty
 
 Because this putty effectively eliminates trapped air and tolerates small imperfections, 3D-printed housings become viable waterproof enclosures, even at meaningful depths.
 
-Grant Acknowledgment
+**Grant Acknowledgment**
 
 This work was funded by a grant from Experiment.com.
 Project progress, experiments, and background can be followed here:
