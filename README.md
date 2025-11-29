@@ -74,7 +74,7 @@ code.py
 
   - pressure in hPa
 
-  -temperature in °C once per second to incrementing CSV files.
+  - temperature in °C once per second to incrementing CSV files.
 
 **Hardware Overview**
 
